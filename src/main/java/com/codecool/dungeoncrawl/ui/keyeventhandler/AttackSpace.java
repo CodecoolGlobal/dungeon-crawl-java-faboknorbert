@@ -12,16 +12,16 @@ public class AttackSpace implements KeyHandler{
 
     @Override
     public void perform(KeyEvent event, GameMap map) {
-        ArrayList<Cell> neighbors = new ArrayList<>();
-        neighbors.add(map.getPlayer().getCell().getNeighbor(0, 1));
-        neighbors.add(map.getPlayer().getCell().getNeighbor(0, -1));
-        neighbors.add(map.getPlayer().getCell().getNeighbor(-1, 0));
-        neighbors.add(map.getPlayer().getCell().getNeighbor(1, 0));
+        if (code.equals(event.getCode())) {
+            ArrayList<Cell> neighbors = new ArrayList<>();
+            neighbors.add(map.getPlayer().getCell().getNeighbor(0, 1));
+            neighbors.add(map.getPlayer().getCell().getNeighbor(0, -1));
+            neighbors.add(map.getPlayer().getCell().getNeighbor(1, 0));
+            neighbors.add(map.getPlayer().getCell().getNeighbor(-1, 0));
 
-        if (code.equals(event.getCode())){
-            for (Cell neighbor : neighbors) {
-                if (neighbor.getActor() != null) {
-                    map.getPlayer().attack(neighbor.getActor());
+            for (Cell cell : neighbors) {
+                if (cell.getActor() != null) {
+                    map.getPlayer().attack(cell.getActor());
                 }
             }
         }

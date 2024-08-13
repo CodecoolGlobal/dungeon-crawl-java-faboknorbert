@@ -30,7 +30,7 @@ public class GameLogic {
     }
 
     public String getPlayerDamage(){
-        return Integer.toString(map.getPlayer().getDamage());
+        return Integer.toString(map.getPlayer().getStrength());
     }
 
     public String getPlayerInventory(){

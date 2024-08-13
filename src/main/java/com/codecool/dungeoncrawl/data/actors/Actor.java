@@ -15,8 +15,6 @@ public abstract class Actor implements Drawable {
         this.health = health;
         this.strength = strength;
         this.cell.setActor(this);
-        this.health = health;
-        this.damage = damage;
     }
 
     public void move(int dx, int dy) {
@@ -81,15 +79,4 @@ public abstract class Actor implements Drawable {
         return cell.getY();
     }
 
-    public int getDamage(){
-        return this.damage;
-    }
-
-    public void setDamage(int damage){
-        this.damage = damage;
-    }
-
-    public void setHealth(int health){
-        this.health = health;
-    }
 }

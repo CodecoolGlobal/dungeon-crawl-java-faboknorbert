@@ -21,7 +21,7 @@ public class Sword extends Item{
 
     @Override
     public void pickUp(GameMap gameMap){
-        gameMap.getPlayer().setDamage(gameMap.getPlayer().getDamage() + damage);
+        gameMap.getPlayer().setStrength(gameMap.getPlayer().getStrength() + damage);
         gameMap.getPlayer().getInventory().add(this);
     }
 }
