@@ -36,11 +36,11 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell, 10, 10);
+                            new Skeleton(cell, 5, 2);
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, 15, 5));
+                            map.setPlayer(new Player(cell, 25, 2));
                             break;
                         case 'd':
                             cell.setType(CellType.LOCKED_DOOR);
