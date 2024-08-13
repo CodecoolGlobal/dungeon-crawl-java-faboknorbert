@@ -9,8 +9,8 @@ import java.util.List;
 public class Player extends Actor {
     private List<Item> inventory;
 
-    public Player(Cell cell, int health, int damage) {
-        super(cell, health, damage);
+    public Player(Cell cell, int health, int strength) {
+        super(cell, health, strength);
         this.inventory = new ArrayList<Item>();
     }
 
