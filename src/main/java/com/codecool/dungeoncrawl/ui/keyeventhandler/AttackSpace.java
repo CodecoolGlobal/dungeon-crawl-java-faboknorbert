@@ -7,7 +7,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 
-public class Attack implements KeyHandler{
+public class AttackSpace implements KeyHandler{
     public static final KeyCode code = KeyCode.SPACE;
 
     @Override
