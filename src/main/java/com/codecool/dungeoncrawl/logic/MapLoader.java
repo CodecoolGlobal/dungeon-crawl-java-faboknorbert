@@ -36,7 +36,7 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell, 5, 2);
+                            new Skeleton(cell, 10, 10);
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
