@@ -6,10 +6,13 @@ import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
-    private int health = 10;
+    private int health;
+    private int strength;
 
-    public Actor(Cell cell) {
+    public Actor(Cell cell, int health, int strength) {
         this.cell = cell;
+        this.health = health;
+        this.strength = strength;
         this.cell.setActor(this);
     }
 
@@ -28,8 +31,33 @@ public abstract class Actor implements Drawable {
                 cell.getType() == CellType.OPEN_DOOR;
     }
 
+
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health <= 0) {
+            die();
+        }
+    }
+
+    protected void die() {
+        cell.setActor(null);
+        this.cell = null;
+    }
+
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public Cell getCell() {
