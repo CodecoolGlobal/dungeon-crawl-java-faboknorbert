@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
+import com.codecool.dungeoncrawl.data.items.Item;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -14,6 +15,8 @@ public abstract class Actor implements Drawable {
         this.health = health;
         this.strength = strength;
         this.cell.setActor(this);
+        this.health = health;
+        this.damage = damage;
     }
 
     public void move(int dx, int dy) {
@@ -27,7 +30,7 @@ public abstract class Actor implements Drawable {
 
     private boolean canMoveTo(Cell cell) {
         return cell.getType() == CellType.FLOOR &&
-                cell.getActor() == null ||
+                cell.getActor() == null  && cell.getItem() == null||
                 cell.getType() == CellType.OPEN_DOOR;
     }
 
@@ -76,5 +79,17 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public int getDamage(){
+        return this.damage;
+    }
+
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
+
+    public void setHealth(int health){
+        this.health = health;
     }
 }
