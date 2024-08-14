@@ -66,6 +66,7 @@ public class MapLoader {
                             break;
                         case 'l':
                             cell.setType(CellType.LOAD_NEW_MAP);
+                            break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
