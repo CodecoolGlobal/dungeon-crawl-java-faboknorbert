@@ -7,7 +7,7 @@ public class GameLogic {
     private GameMap map;
 
     public GameLogic() {
-        this.map = MapLoader.loadMap();
+        this.map = MapLoader.loadMap("/map.txt");
     }
 
     public double getMapWidth() {
