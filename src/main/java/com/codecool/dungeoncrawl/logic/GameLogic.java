@@ -5,9 +5,11 @@ import com.codecool.dungeoncrawl.data.GameMap;
 
 public class GameLogic {
     private GameMap map;
+    private int mapNum;
 
-    public GameLogic() {
-        this.map = MapLoader.loadMap("/map.txt");
+    public GameLogic(String mapName) {
+        this.map = MapLoader.loadMap(mapName);
+        this.mapNum = 1;
     }
 
     public double getMapWidth() {
@@ -31,6 +33,18 @@ public class GameLogic {
 
     public String getPlayerDamage(){
         return Integer.toString(map.getPlayer().getStrength());
+    }
+
+    public void setMap(String mapName){
+        this.map = MapLoader.loadMap(mapName);
+    }
+
+    public void setNumMap(int numMap){
+        this.mapNum = numMap;
+    }
+
+    public int getMapNumber(){
+        return mapNum;
     }
 
     public String getPlayerInventory(){
