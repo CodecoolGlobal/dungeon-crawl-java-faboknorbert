@@ -29,7 +29,7 @@ public abstract class Actor implements Drawable {
     private boolean canMoveTo(Cell cell) {
         return cell.getType() == CellType.FLOOR &&
                 cell.getActor() == null  && cell.getItem() == null||
-                cell.getType() == CellType.OPEN_DOOR;
+                cell.getType() == CellType.OPEN_DOOR || cell.getType() == CellType.LOAD_NEW_MAP;
     }
 
     public void attack(Actor target) {
@@ -79,4 +79,7 @@ public abstract class Actor implements Drawable {
         return cell.getY();
     }
 
+    public void setCell(Cell cell){
+        this.cell = cell;
+    }
 }
