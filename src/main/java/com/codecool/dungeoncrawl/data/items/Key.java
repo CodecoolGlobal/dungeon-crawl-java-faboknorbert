@@ -6,7 +6,7 @@ import com.codecool.dungeoncrawl.data.GameMap;
 public class Key extends Item {
 
     public Key(Cell cell) {
-        super(cell, "Key", "chest");
+        super(cell, "Key", "key");
     }
 
     @Override
@@ -16,6 +16,6 @@ public class Key extends Item {
 
     @Override
     public String getTileName() {
-        return "chest";
+        return "key";
     }
 }
