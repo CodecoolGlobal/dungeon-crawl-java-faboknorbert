@@ -18,8 +18,8 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right(), new PickUp(), new AttackSpace(), new OpenDoor(), new Save());
-        this.logic = new GameLogic();
+        this.keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right(), new PickUp(), new AttackSpace());
+        this.logic = new GameLogic("/map.txt");
         this.ui = new UI(logic, keyHandlers);
         ui.setUpPain(primaryStage);
 

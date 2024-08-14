@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
@@ -49,6 +50,15 @@ public class UI {
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
+
+        Cell playerCell = logic.getMap().getPlayer().getCell();
+        if (playerCell.getType() == CellType.LOAD_NEW_MAP) {
+            logic.setNumMap(logic.getMapNumber() + 1);
+            String nextMap = "/map" + logic.getMapNumber() + ".txt";
+            logic.setMap(nextMap);
+        }
+
+
         refresh();
     }
 
