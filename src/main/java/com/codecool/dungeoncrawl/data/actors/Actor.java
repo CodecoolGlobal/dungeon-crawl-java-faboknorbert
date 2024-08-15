@@ -19,17 +19,11 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (canMoveTo(nextCell)) {
+        if (nextCell.canMoveTo()) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
-    }
-
-    private boolean canMoveTo(Cell cell) {
-        return cell.getType() == CellType.FLOOR &&
-                cell.getActor() == null  && cell.getItem() == null||
-                cell.getType() == CellType.OPEN_DOOR || cell.getType() == CellType.LOAD_NEW_MAP;
     }
 
     public void attack(Actor target, GameMap map) {
