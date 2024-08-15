@@ -50,6 +50,8 @@ public class UI {
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
+        logic.moveEnemy(keyEvent, logic.getMap());
+
 
         Cell playerCell = logic.getMap().getPlayer().getCell();
         if (playerCell.getType() == CellType.LOAD_NEW_MAP) {
