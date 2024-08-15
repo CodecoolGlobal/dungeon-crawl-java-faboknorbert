@@ -51,6 +51,7 @@ public abstract class Actor implements Drawable {
     protected void die(GameMap map,Actor target) {
         map.removeEnemy(target);
         this.cell.setActor(null);
+        target.getCell().setActor(null);
     }
 
     public int getHealth() {

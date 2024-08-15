@@ -47,6 +47,7 @@ public class UI {
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
+        logic.checkPlayerHealth();
         logic.moveEnemy(keyEvent, logic.getMap());
 
 

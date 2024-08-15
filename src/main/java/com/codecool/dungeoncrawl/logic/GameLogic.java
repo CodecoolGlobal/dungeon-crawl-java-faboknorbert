@@ -7,11 +7,8 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javax.swing.JOptionPane;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -104,5 +101,23 @@ public class GameLogic {
     }
     public GameMap getMap() {
         return map;
+    }
+
+    public void checkPlayerHealth() {
+        if (player.getHealth() <= 0) {
+            int response = JOptionPane.showOptionDialog(
+                null,
+                "Game Over! You have died.",
+                "Game Over",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"OK"},
+                "OK"
+            );
+            if (response == JOptionPane.OK_OPTION) {
+                System.exit(0);
+            }
+        }
     }
 }

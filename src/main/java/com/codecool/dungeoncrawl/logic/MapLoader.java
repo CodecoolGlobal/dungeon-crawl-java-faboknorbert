@@ -64,7 +64,7 @@ public class MapLoader {
             case '@':
                 cell.setType(CellType.FLOOR);
                 if (player == null) {
-                    player = new Player(cell, 20, 2);
+                    player = new Player(cell, 10, 2);
                     map.setPlayer(player);
                 } else {
                     player.setCell(cell);
