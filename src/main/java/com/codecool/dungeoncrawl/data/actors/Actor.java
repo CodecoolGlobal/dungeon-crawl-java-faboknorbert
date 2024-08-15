@@ -3,7 +3,9 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
+import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.logic.Game;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -32,23 +34,23 @@ public abstract class Actor implements Drawable {
                 cell.getType() == CellType.OPEN_DOOR || cell.getType() == CellType.LOAD_NEW_MAP;
     }
 
-    public void attack(Actor target) {
-        target.takeDamage(getStrength());
+    public void attack(Actor target, GameMap map) {
+        target.takeDamage(target, map);
         if (target.getHealth() > 0) {
-            this.takeDamage(target.getStrength());
+            this.takeDamage(target, map);
         }
     }
 
-    public void takeDamage(int damage) {
-        this.health -= damage;
+    public void takeDamage(Actor target, GameMap map) {
+        this.health -= target.getStrength();
         if (this.health <= 0) {
-            die();
+            die(map, target);
         }
     }
 
-    protected void die() {
-        cell.setActor(null);
-        this.cell = null;
+    protected void die(GameMap map,Actor target) {
+        map.removeEnemy(target);
+        this.cell.setActor(null);
     }
 
     public int getHealth() {

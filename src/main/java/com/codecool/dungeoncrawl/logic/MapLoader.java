@@ -58,7 +58,8 @@ public class MapLoader {
                 break;
             case 's':
                 cell.setType(CellType.FLOOR);
-                new Skeleton(cell, 5, 2);
+                Skeleton skeleton = new Skeleton(cell, 5, 2);
+                map.addEnemy(skeleton);
                 break;
             case '@':
                 cell.setType(CellType.FLOOR);
@@ -79,7 +80,8 @@ public class MapLoader {
                 break;
             case '$':
                 cell.setType(CellType.FLOOR);
-                new Ghost(cell, 10, 3);
+                Ghost ghost = new Ghost(cell, 10, 3);
+                map.addEnemy(ghost);
                 break;
             case 'w':
                 cell.setType(CellType.FLOOR);
