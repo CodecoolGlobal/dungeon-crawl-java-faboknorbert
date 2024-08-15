@@ -33,7 +33,7 @@ public class Tiles {
         tileMap.put("ghost", new Tile(27, 6));
         tileMap.put("chest", new Tile(9, 6));
         tileMap.put("Sword", new Tile(10, 5));
-        tileMap.put("newMap", new Tile(4, 10));
+        tileMap.put("newMap", new Tile(3, 6));
         tileMap.put("key", new Tile(16, 23));
         tileMap.put("saveCell", new Tile(26, 28));
     }
