@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.actors.Tarantula;
 import com.codecool.dungeoncrawl.data.items.HealthPotion;
 import com.codecool.dungeoncrawl.data.items.Key;
 import com.codecool.dungeoncrawl.data.items.Sword;
@@ -100,6 +101,11 @@ public class MapLoader {
                 break;
             case 'x':
                 cell.setType(CellType.SAVE_CELL);
+                break;
+            case 't':
+                cell.setType(CellType.FLOOR);
+                Tarantula tarantula = new Tarantula(cell, 8, 4);
+                map.addEnemy(tarantula);
                 break;
             default:
                 throw new RuntimeException("Unrecognized character: '" + tile + "'");
