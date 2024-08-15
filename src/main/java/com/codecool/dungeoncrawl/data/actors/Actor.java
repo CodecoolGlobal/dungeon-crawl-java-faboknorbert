@@ -4,8 +4,6 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.items.Item;
-import com.codecool.dungeoncrawl.logic.Game;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -51,6 +49,7 @@ public abstract class Actor implements Drawable {
     protected void die(GameMap map,Actor target) {
         map.removeEnemy(target);
         this.cell.setActor(null);
+        target.getCell().setActor(null);
     }
 
     public int getHealth() {
