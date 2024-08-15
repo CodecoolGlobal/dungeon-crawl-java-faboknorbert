@@ -1,7 +1,6 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Actor;
@@ -16,11 +15,13 @@ import java.util.Random;
 public class GameLogic {
     private GameMap map;
     private int mapNum;
+    private int maxMapNum;
     private Player player;
 
     public GameLogic(String mapName) {
         this.map = MapLoader.loadMap(mapName);
         this.mapNum = 1;
+        this.maxMapNum = 3;
         this.player = map.getPlayer();
     }
 
@@ -73,15 +74,19 @@ public class GameLogic {
     }
 
     public String getPlayerHealth() {
-        return Integer.toString(map.getPlayer().getHealth());
+        return Integer.toString(player.getHealth());
     }
 
     public String getPlayerDamage(){
-        return Integer.toString(map.getPlayer().getStrength());
+        return Integer.toString(player.getStrength());
     }
 
     public void setMap(String mapName){
-        this.map = MapLoader.loadMap(mapName, player);
+        if (mapNum > maxMapNum){
+            showWinMessage();
+        }else{
+            this.map = MapLoader.loadMap(mapName, player);
+        }
     }
 
     public void setNumMap(int numMap){
@@ -93,10 +98,19 @@ public class GameLogic {
     }
 
     public String getPlayerInventory(){
-        return map.getPlayer().toString();
+        return player.toString();
     }
     public GameMap getMap() {
         return map;
+    }
+
+    private void showWinMessage() {
+        JOptionPane.showMessageDialog(
+                null,
+                "Congratulations! You Win!",
+                "Game Over",
+                JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
     }
 
     public void checkPlayerHealth() {
