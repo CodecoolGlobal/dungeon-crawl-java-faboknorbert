@@ -42,11 +42,7 @@ public class GameLogic {
                 neighbourCells.add(enemy.getCell().getNeighbor(0, -1));
 
                 for (Cell neighbourCell : neighbourCells) {
-                    if (neighbourCell.getType() != CellType.WALL &&
-                            neighbourCell.getType() != CellType.SAVE_CELL &&
-                            neighbourCell.getType() != CellType.LOCKED_DOOR &&
-                            neighbourCell.getActor() == null &&
-                            neighbourCell.getItem() == null) {
+                    if (neighbourCell.canMoveTo()) {
                         validCells.add(neighbourCell);
                     }
                 }
