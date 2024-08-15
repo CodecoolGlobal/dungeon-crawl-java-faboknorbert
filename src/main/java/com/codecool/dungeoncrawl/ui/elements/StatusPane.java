@@ -15,6 +15,7 @@ public class StatusPane {
     private Label damageValueLabel;
     private Label inventoryTextLabel;
     private Label inventoryValueLabel;
+    private Label controlLabel;
 
     public StatusPane() {
         ui = new GridPane();
@@ -24,6 +25,7 @@ public class StatusPane {
         damageValueLabel = new Label();
         inventoryTextLabel = new Label("Inventory");
         inventoryValueLabel = new Label();
+        controlLabel = new Label("Control:\n    arrows/WASD - move\n    SPACE - attack\n    E - equip/collect\n    O - open locked door");
 
     }
 
@@ -38,6 +40,7 @@ public class StatusPane {
         ui.add(damageValueLabel, 2, 1);
         ui.add(inventoryTextLabel, 0, 2);
         ui.add(inventoryValueLabel, 2, 2);
+        ui.add(controlLabel, 0, 5);
 
 
         BorderPane borderPane = new BorderPane();
