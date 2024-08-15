@@ -57,4 +57,15 @@ public class Cell implements Drawable {
     public int getY() {
         return y;
     }
+
+    public boolean canMoveTo() {
+        boolean passableType = switch (type) {
+            case EMPTY, WALL, LOCKED_DOOR -> false;
+            default -> true;
+        };
+        boolean hasActor = (actor != null);
+
+        boolean hasItem = (item != null);
+        return passableType && !hasActor && !hasItem;
+    }
 }
