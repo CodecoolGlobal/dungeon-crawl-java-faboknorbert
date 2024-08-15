@@ -86,6 +86,7 @@ public class GameLogic {
             showWinMessage();
         }else{
             this.map = MapLoader.loadMap(mapName, player);
+            mapNum++;
         }
     }
 
