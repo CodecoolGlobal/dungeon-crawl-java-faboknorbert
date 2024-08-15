@@ -2,19 +2,17 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import com.codecool.dungeoncrawl.data.actors.Player;
 
 public class GameLogic {
     private GameMap map;
     private int mapNum;
+    private Player player;
 
     public GameLogic(String mapName) {
         this.map = MapLoader.loadMap(mapName);
         this.mapNum = 1;
+        this.player = map.getPlayer();
     }
 
     public double getMapWidth() {
@@ -41,7 +39,7 @@ public class GameLogic {
     }
 
     public void setMap(String mapName){
-        this.map = MapLoader.loadMap(mapName);
+        this.map = MapLoader.loadMap(mapName, player);
     }
 
     public void setNumMap(int numMap){
@@ -57,45 +55,5 @@ public class GameLogic {
     }
     public GameMap getMap() {
         return map;
-    }
-
-    private Connection connect(){
-        String url = "jdbc:postgresql://localhost/dungeon_crawler";
-        String user = "postgres";
-        String password = "Admin";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
-
-    public void saveGameState() {
-        String sql = "INSERT INTO game_state (player_x, player_y, map_data, inventory) VALUES (?, ?, ?, ?)";
-
-        try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, map.getPlayer().getX());
-            pstmt.setInt(2, map.getPlayer().getY());
-            pstmt.setString(3, serializeMap());
-            pstmt.setString(4, serializeInventory());
-
-            pstmt.executeUpdate();
-            System.out.println("Game state saved!");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private String serializeMap() {
-        return map.toString();
-    }
-
-    private String serializeInventory() {
-        return map.getPlayer().getInventory().toString();
     }
 }
