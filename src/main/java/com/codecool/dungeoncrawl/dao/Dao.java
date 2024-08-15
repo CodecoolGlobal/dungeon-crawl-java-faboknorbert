@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+//WIP, CURRENTLY NO USAGE
 public class Dao {
     private Connection connect(){
         String url = "jdbc:postgresql://localhost/dungeon_crawler";
