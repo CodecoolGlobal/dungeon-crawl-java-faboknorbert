@@ -21,7 +21,7 @@ public class AttackSpace implements KeyHandler{
 
             for (Cell cell : neighbors) {
                 if (cell.getActor() != null) {
-                    map.getPlayer().attack(cell.getActor());
+                    map.getPlayer().attack(cell.getActor(), map);
                 }
             }
         }
