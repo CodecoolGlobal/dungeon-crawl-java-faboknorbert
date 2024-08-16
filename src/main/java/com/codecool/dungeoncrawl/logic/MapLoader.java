@@ -46,7 +46,46 @@ public class MapLoader {
         return loadMap(mapFile, null);
     }
 
-    private static void setupCell(Cell cell, char tile, GameMap map, Player player) {
+    private static void setupCell(Cell cell, char tile, GameMap map, Player player, boolean allowDynamic) {
+        if (allowDynamic) {
+            switch (tile) {
+                case 's':
+                    cell.setType(CellType.FLOOR);
+                    Skeleton skeleton = new Skeleton(cell, 5, 2);
+                    map.addEnemy(skeleton);
+                    break;
+                case 'd':
+                    cell.setType(CellType.LOCKED_DOOR);
+                    break;
+                case 'o':
+                    cell.setType(CellType.OPEN_DOOR);
+                    break;
+                case '$':
+                    cell.setType(CellType.FLOOR);
+                    Ghost ghost = new Ghost(cell, 10, 3);
+                    map.addEnemy(ghost);
+                    break;
+                case 'w':
+                    cell.setType(CellType.FLOOR);
+                    new Sword(cell);
+                    break;
+                case 'h':
+                    cell.setType(CellType.FLOOR);
+                    new HealthPotion(cell);
+                    break;
+                case 'k':
+                    cell.setType(CellType.FLOOR);
+                    new Key(cell);
+                    break;
+                case 't':
+                    cell.setType(CellType.FLOOR);
+                    Tarantula tarantula = new Tarantula(cell, 8, 4);
+                    map.addEnemy(tarantula);
+                    break;
+                default:
+                    throw new RuntimeException("Unrecognized character: '" + tile + "'");
+            }
+        }
         switch (tile) {
             case ' ':
                 cell.setType(CellType.EMPTY);
@@ -56,11 +95,6 @@ public class MapLoader {
                 break;
             case '.':
                 cell.setType(CellType.FLOOR);
-                break;
-            case 's':
-                cell.setType(CellType.FLOOR);
-                Skeleton skeleton = new Skeleton(cell, 5, 2);
-                map.addEnemy(skeleton);
                 break;
             case '@':
                 cell.setType(CellType.FLOOR);
@@ -79,33 +113,11 @@ public class MapLoader {
             case 'o':
                 cell.setType(CellType.OPEN_DOOR);
                 break;
-            case '$':
-                cell.setType(CellType.FLOOR);
-                Ghost ghost = new Ghost(cell, 10, 3);
-                map.addEnemy(ghost);
-                break;
-            case 'w':
-                cell.setType(CellType.FLOOR);
-                new Sword(cell);
-                break;
-            case 'h':
-                cell.setType(CellType.FLOOR);
-                new HealthPotion(cell);
-                break;
             case 'l':
                 cell.setType(CellType.LOAD_NEW_MAP);
                 break;
-            case 'k':
-                cell.setType(CellType.FLOOR);
-                new Key(cell);
-                break;
             case 'x':
                 cell.setType(CellType.SAVE_CELL);
-                break;
-            case 't':
-                cell.setType(CellType.FLOOR);
-                Tarantula tarantula = new Tarantula(cell, 8, 4);
-                map.addEnemy(tarantula);
                 break;
             default:
                 throw new RuntimeException("Unrecognized character: '" + tile + "'");

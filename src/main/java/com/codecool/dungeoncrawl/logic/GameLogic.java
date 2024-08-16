@@ -18,6 +18,11 @@ public class GameLogic {
     private int maxMapNum;
     private Player player;
 
+    private final static List<KeyCode> directions = List.of(
+            KeyCode.LEFT,  KeyCode.RIGHT, KeyCode.UP, KeyCode.DOWN,
+            KeyCode.A,  KeyCode.D, KeyCode.W, KeyCode.S
+    );
+
     public GameLogic(String mapName) {
         this.map = MapLoader.loadMap(mapName);
         this.mapNum = 1;
@@ -26,12 +31,7 @@ public class GameLogic {
     }
 
     public void moveEnemy(KeyEvent event, GameMap map){
-        if (KeyCode.LEFT.equals(event.getCode()) || KeyCode.A.equals(event.getCode())
-                || KeyCode.RIGHT.equals(event.getCode()) || KeyCode.D.equals(event.getCode())
-                || KeyCode.UP.equals(event.getCode()) || KeyCode.W.equals(event.getCode())
-                || KeyCode.DOWN.equals(event.getCode()) || KeyCode.S.equals(event.getCode())
-        ) {
-
+        if (directions.contains(event.getCode())) {
             Random random = new Random();
             for (Actor enemy : map.getEnemies()) {
 
@@ -50,9 +50,7 @@ public class GameLogic {
                 if(!validCells.isEmpty()) {
                     int randomNum = random.nextInt(validCells.size());
                     Cell neighbourCell = validCells.get(randomNum);
-                    enemy.getCell().setActor(null);
-                    enemy.setCell(neighbourCell);
-                    neighbourCell.setActor(enemy);
+                    enemy.move(neighbourCell);
                 }
             }
         }

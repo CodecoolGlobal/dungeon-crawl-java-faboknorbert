@@ -59,13 +59,17 @@ public class Cell implements Drawable {
     }
 
     public boolean canMoveTo() {
-        boolean passableType = switch (type) {
-            case EMPTY, WALL, LOCKED_DOOR -> false;
-            default -> true;
-        };
+        boolean passableType = isPassable();
         boolean hasActor = (actor != null);
 
         boolean hasItem = (item != null);
         return passableType && !hasActor && !hasItem;
+    }
+
+    private boolean isPassable() {
+        return switch (type) {
+            case EMPTY, WALL, LOCKED_DOOR -> false;
+            default -> true;
+        };
     }
 }
