@@ -7,7 +7,6 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OpenDoor implements KeyHandler{

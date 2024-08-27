@@ -5,7 +5,6 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AttackSpace implements KeyHandler{
