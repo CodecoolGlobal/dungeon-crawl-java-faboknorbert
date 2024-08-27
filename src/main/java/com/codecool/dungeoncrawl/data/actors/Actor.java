@@ -33,7 +33,7 @@ public abstract class Actor implements Drawable {
     }
 
     public void takeDamage(Actor target, GameMap map) {
-        this.health -= target.getStrength();
+        this.health -= map.getPlayer().getStrength();
         if (this.health <= 0) {
             die(map, target);
         }
