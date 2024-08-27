@@ -7,7 +7,7 @@ public class HealthPotion extends Item {
     private static final int healValue = 3;
 
     public HealthPotion(Cell cell) {
-        super(cell, "Health Potion", "chest");
+        super(cell, "Health Potion");
     }
 
     @Override

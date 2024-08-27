@@ -9,7 +9,7 @@ public abstract class Item implements Drawable{
     private String itemName;
     private static final String tileName = "chest";
 
-    public Item(Cell cell, String itemName, String tileName) {
+    public Item(Cell cell, String itemName) {
         this.cell = cell;
         this.cell.setItem(this);
         this.itemName = itemName;
