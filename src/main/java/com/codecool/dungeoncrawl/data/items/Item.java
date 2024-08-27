@@ -25,4 +25,12 @@ public abstract class Item implements Drawable{
 
     public abstract void pickUp(GameMap gameMap);
 
+    public int getX() {
+        return cell.getX();
+    }
+
+    public int getY() {
+        return cell.getY();
+    }
+
 }
