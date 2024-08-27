@@ -8,18 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
-    private List<Item> inventory;
+    private final List<Item> inventory;
 
     public Player(Cell cell, int health, int strength) {
         super(cell, health, strength);
-        this.inventory = new ArrayList<Item>();
+        this.inventory = new ArrayList<>();
     }
 
     @Override
     public String getTileName() {
         return "player";
     }
-
 
     public List<Item> getInventory() {
         return inventory;
@@ -36,13 +35,11 @@ public class Player extends Actor {
     }
 
     public boolean hasKey() {
-        boolean result = false;
         for(Item item : inventory){
             if (item instanceof Key) {
-                result = true;
-                break;
+                return true;
             }
         }
-        return result;
+        return false;
     }
 }
