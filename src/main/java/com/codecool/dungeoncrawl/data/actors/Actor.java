@@ -26,16 +26,16 @@ public abstract class Actor implements Drawable {
     }
 
     public void attack(Actor target, GameMap map) {
-        target.takeDamage(target, map);
+        target.takeDamage(this, map);
         if (target.getHealth() > 0) {
             this.takeDamage(target, map);
         }
     }
 
     public void takeDamage(Actor target, GameMap map) {
-        this.health -= map.getPlayer().getStrength();
+        this.health -= target.getStrength();
         if (this.health <= 0) {
-            die(map, target);
+            die(map, this);
         }
     }
 

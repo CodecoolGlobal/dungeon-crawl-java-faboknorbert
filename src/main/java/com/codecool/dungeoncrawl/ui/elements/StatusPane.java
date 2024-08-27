@@ -37,9 +37,9 @@ public class StatusPane {
         ui.add(healthTextLabel, 0, 0);
         ui.add(healthValueLabel, 1, 0);
         ui.add(damageTextLabel, 0, 1);
-        ui.add(damageValueLabel, 2, 1);
+        ui.add(damageValueLabel, 1, 1);
         ui.add(inventoryTextLabel, 0, 2);
-        ui.add(inventoryValueLabel, 2, 2);
+        ui.add(inventoryValueLabel, 1, 2);
         ui.add(controlLabel, 0, 5);
 
 
