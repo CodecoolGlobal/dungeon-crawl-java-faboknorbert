@@ -7,7 +7,6 @@ import com.codecool.dungeoncrawl.data.actors.Actor;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javax.swing.JOptionPane;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,7 +40,7 @@ public class GameLogic {
                 List<Cell> neighbourCells = new ArrayList<>();
 
                 for (Cell neighbourCell : enemy.getCell().getNeighbors()) {
-                    if (neighbourCell.canMoveTo()) {
+                    if (neighbourCell.canMoveToCellType()) {
                         neighbourCells.add(neighbourCell);
                     }
                 }
@@ -80,11 +79,8 @@ public class GameLogic {
     }
 
     public void setMap(String mapName){
-        if (mapNum > maxMapNum){
-            showWinMessage();
-        }else{
-            this.map = MapLoader.loadMap(mapName, player);
-        }
+        if (mapNum > maxMapNum) showWinMessage();
+        this.map = MapLoader.loadMap(mapName, player);
     }
 
     public void setNumMap(int numMap){
@@ -98,6 +94,7 @@ public class GameLogic {
     public String getPlayerInventory(){
         return player.toString();
     }
+
     public GameMap getMap() {
         return map;
     }
