@@ -3,6 +3,9 @@ package com.codecool.dungeoncrawl.data;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.items.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
@@ -42,7 +45,19 @@ public class Cell implements Drawable {
     }
 
     public Cell getNeighbor(int dx, int dy) {
+        if(x == 0 && dx < 0 || x == gameMap.getWidth() - 1 && dx > 0 || y == 0 && dy < 0 || y == gameMap.getHeight() - 1 && dy > 0) {
+            return null;
+        }
         return gameMap.getCell(x + dx, y + dy);
+    }
+
+    public List<Cell> getNeighbors() {
+        ArrayList<Cell> neighbors = new ArrayList<>();
+        neighbors.add(gameMap.getCell(x, y +1));
+        neighbors.add(gameMap.getCell(x, y -1));
+        neighbors.add(gameMap.getCell(x - 1 , y));
+        neighbors.add(gameMap.getCell(x + 1, y));
+        return neighbors;
     }
 
     @Override
@@ -59,13 +74,6 @@ public class Cell implements Drawable {
     }
 
     public boolean canMoveTo() {
-        boolean passableType = switch (type) {
-            case EMPTY, WALL, LOCKED_DOOR -> false;
-            default -> true;
-        };
-        boolean hasActor = (actor != null);
-
-        boolean hasItem = (item != null);
-        return passableType && !hasActor && !hasItem;
+       return type.canMoveTo() && actor == null && item == null;
     }
 }
