@@ -16,6 +16,12 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
+    public Actor(int x, int y, int health, int strength) {
+        this.health = health;
+        this.strength = strength;
+        this.cell = new Cell(x, y);
+    }
+
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell != null && nextCell.canMoveToCellType()) {

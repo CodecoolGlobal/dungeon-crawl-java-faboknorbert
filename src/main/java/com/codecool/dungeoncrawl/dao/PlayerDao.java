@@ -3,17 +3,21 @@ package com.codecool.dungeoncrawl.dao;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.items.Item;
-import com.codecool.dungeoncrawl.logic.GameLogic;
 
 import java.sql.*;
 import java.util.List;
 
-public class GameDao {
+public class PlayerDao {
     private final String url = "jdbc:postgresql://localhost:5432/dungeon_crawler";
     private final String user = "postgres";
     private final String password = "Admin";
 
-    public void savePlayerState(int playerX, int playerY, int playerHealth, int playerStrength) {
+    public void savePlayer(Player player) throws SQLException {
+        int playerX = player.getX();
+        int playerY = player.getY();
+        int playerHealth = player.getHealth();
+        int playerStrength = player.getStrength();
+
         String query = "INSERT INTO player (x, y, health, strength) " +
                 "VALUES (?, ?, ?, ?) " +
                 "ON CONFLICT (id) DO UPDATE SET " +
@@ -31,8 +35,8 @@ public class GameDao {
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 int playerId = rs.getInt(1);
-                saveItems(playerId, Game.getPlayer().getInventory());
-                saveMonsters(playerId, Game.getMonsters());
+//                saveItems(playerId, Game.getPlayer().getInventory());
+//                saveMonsters(playerId, Game.getMonsters());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,8 +88,8 @@ public class GameDao {
              ResultSet rs = stmt.executeQuery(query)) {
             if (rs.next()) {
                 int playerId = rs.getInt("id");
-                int playerX = rs.getInt("position_x");
-                int playerY = rs.getInt("position_y");
+                int playerX = rs.getInt("x");
+                int playerY = rs.getInt("y");
                 int health = rs.getInt("health");
                 int strength = rs.getInt("strength");
 

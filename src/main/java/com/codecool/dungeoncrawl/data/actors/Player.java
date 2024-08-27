@@ -15,6 +15,11 @@ public class Player extends Actor {
         this.inventory = new ArrayList<>();
     }
 
+    public Player(int x, int y, int health, int strength) {
+        super(x, y, health, strength);
+        this.inventory = new ArrayList<>();
+    }
+
     @Override
     public String getTileName() {
         return "player";
