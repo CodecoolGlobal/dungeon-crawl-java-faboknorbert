@@ -1,8 +1,6 @@
 package com.codecool.dungeoncrawl.data;
-
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.items.Item;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,16 +40,12 @@ public class Cell implements Drawable {
         return item;
     }
 
-    public int getX() {
-        return x;
-    }
+    public int getX() { return x; }
 
-    public int getY() {
-        return y;
-    }
+    public int getY() { return y; }
 
     public Cell getNeighbor(int dx, int dy) {
-        if(x == 0 && dx < 0 || x == gameMap.getWidth() - 1 && dx > 0 || y == 0 && dy < 0 || y == gameMap.getHeight() - 1 && dy > 0) {
+        if(isOutOfBounds(dx, dy)) {
             return null;
         }
         return gameMap.getCell(x + dx, y + dy);
@@ -71,7 +65,11 @@ public class Cell implements Drawable {
         return type.getTileName();
     }
 
-    public boolean canMoveTo() {
+    public boolean canMoveToCellType() {
        return type.canMoveTo() && actor == null && item == null;
+    }
+
+    private boolean isOutOfBounds(int dx,int dy){
+       return x == 0 && dx < 0 || x == gameMap.getWidth() - 1 && dx > 0 || y == 0 && dy < 0 || y == gameMap.getHeight() - 1 && dy > 0;
     }
 }
