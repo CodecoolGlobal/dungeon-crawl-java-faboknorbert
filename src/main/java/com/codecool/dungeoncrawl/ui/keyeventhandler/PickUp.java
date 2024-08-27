@@ -13,13 +13,9 @@ public class PickUp implements KeyHandler{
     @Override
     public void perform(KeyEvent event, GameMap map) {
         if(code.equals(event.getCode())) {
-            List<Cell> cells = new ArrayList<Cell>();
-            cells.add(map.getPlayer().getCell().getNeighbor(0, 1));
-            cells.add(map.getPlayer().getCell().getNeighbor(1, 0));
-            cells.add(map.getPlayer().getCell().getNeighbor(-1, 0));
-            cells.add(map.getPlayer().getCell().getNeighbor(0, -1));
+            List<Cell> neighbors = map.getPlayer().getCell().getNeighbors();
 
-            for(Cell cell : cells) {
+            for(Cell cell : neighbors) {
                 if(cell.getItem() != null){
                     cell.getItem().pickUp(map);
                     cell.setItem(null);
