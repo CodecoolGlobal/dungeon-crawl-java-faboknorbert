@@ -7,11 +7,16 @@ import com.codecool.dungeoncrawl.data.GameMap;
 public abstract class Item implements Drawable{
     private Cell cell;
     private String itemName;
+    private static final String tileName = "chest";
 
     public Item(Cell cell, String itemName, String tileName) {
         this.cell = cell;
         this.cell.setItem(this);
         this.itemName = itemName;
+    }
+
+    public String getTileName(){
+        return tileName;
     }
 
     public String getItemName() {
