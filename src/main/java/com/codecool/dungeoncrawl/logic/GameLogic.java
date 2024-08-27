@@ -11,12 +11,15 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class GameLogic {
     private GameMap map;
     private int mapNum;
-    private int maxMapNum;
-    private Player player;
+    private final int maxMapNum;
+    private final Player player;
+    Random random = new Random();
+
 
     public GameLogic(String mapName) {
         this.map = MapLoader.loadMap(mapName);
@@ -26,30 +29,26 @@ public class GameLogic {
     }
 
     public void moveEnemy(KeyEvent event, GameMap map){
-        if (KeyCode.LEFT.equals(event.getCode()) || KeyCode.A.equals(event.getCode())
-                || KeyCode.RIGHT.equals(event.getCode()) || KeyCode.D.equals(event.getCode())
-                || KeyCode.UP.equals(event.getCode()) || KeyCode.W.equals(event.getCode())
-                || KeyCode.DOWN.equals(event.getCode()) || KeyCode.S.equals(event.getCode())
-        ) {
+        Set<KeyCode> movementKeys = Set.of(
+                KeyCode.LEFT, KeyCode.A,
+                KeyCode.RIGHT, KeyCode.D,
+                KeyCode.UP, KeyCode.W,
+                KeyCode.DOWN, KeyCode.S
+        );
 
-            Random random = new Random();
+        if(movementKeys.contains(event.getCode())) {
             for (Actor enemy : map.getEnemies()) {
-
                 List<Cell> neighbourCells = new ArrayList<>();
-                List<Cell> validCells = new ArrayList<>();
-                neighbourCells.add(enemy.getCell().getNeighbor(1, 0));
-                neighbourCells.add(enemy.getCell().getNeighbor(0, 1));
-                neighbourCells.add(enemy.getCell().getNeighbor(-1, 0));
-                neighbourCells.add(enemy.getCell().getNeighbor(0, -1));
 
-                for (Cell neighbourCell : neighbourCells) {
+                for (Cell neighbourCell : enemy.getCell().getNeighbors()) {
                     if (neighbourCell.canMoveTo()) {
-                        validCells.add(neighbourCell);
+                        neighbourCells.add(neighbourCell);
                     }
                 }
-                if(!validCells.isEmpty()) {
-                    int randomNum = random.nextInt(validCells.size());
-                    Cell neighbourCell = validCells.get(randomNum);
+
+                if(!neighbourCells.isEmpty()) {
+                    int randomNum = random.nextInt(neighbourCells.size());
+                    Cell neighbourCell = neighbourCells.get(randomNum);
                     enemy.getCell().setActor(null);
                     enemy.setCell(neighbourCell);
                     neighbourCell.setActor(enemy);
@@ -66,8 +65,7 @@ public class GameLogic {
         return map.getHeight();
     }
 
-    public void setup() {
-    }
+    public void setup() {}
 
     public Cell getCell(int x, int y) {
         return map.getCell(x, y);
