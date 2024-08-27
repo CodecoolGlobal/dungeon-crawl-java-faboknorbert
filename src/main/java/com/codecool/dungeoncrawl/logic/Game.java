@@ -17,7 +17,7 @@ public class Game extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         this.keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right(), new PickUp(), new AttackSpace(), new OpenDoor());
         this.logic = new GameLogic("/map.txt");
         this.ui = new UI(logic, keyHandlers);
