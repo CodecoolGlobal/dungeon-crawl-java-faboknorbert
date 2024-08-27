@@ -10,8 +10,8 @@ public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
     private Item item;
-    private GameMap gameMap;
-    private int x, y;
+    private final GameMap gameMap;
+    private final int x, y;
 
     public Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
@@ -20,9 +20,7 @@ public class Cell implements Drawable {
         this.type = type;
     }
 
-    public CellType getType() {
-        return type;
-    }
+    public CellType getType() { return type; }
 
     public void setType(CellType type) {
         this.type = type;
@@ -44,6 +42,14 @@ public class Cell implements Drawable {
         return item;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public Cell getNeighbor(int dx, int dy) {
         if(x == 0 && dx < 0 || x == gameMap.getWidth() - 1 && dx > 0 || y == 0 && dy < 0 || y == gameMap.getHeight() - 1 && dy > 0) {
             return null;
@@ -63,14 +69,6 @@ public class Cell implements Drawable {
     @Override
     public String getTileName() {
         return type.getTileName();
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public boolean canMoveTo() {
