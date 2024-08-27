@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameMap {
-    private int width;
-    private int height;
-    private Cell[][] cells;
-    private List<Actor> enemies;
+    private final int width;
+    private final int height;
+    private final Cell[][] cells;
+    private final List<Actor> enemies;
     private Player player;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
         this.height = height;
-        this.enemies = new ArrayList<Actor>();
+        this.enemies = new ArrayList<>();
         cells = new Cell[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -42,7 +42,7 @@ public class GameMap {
     }
 
     public void removeEnemy(Actor enemy){
-        enemies.removeIf(actor -> actor.getX() == enemy.getX() && actor.getY() == actor.getY());
+        enemies.removeIf(actor -> actor.getX() == enemy.getX() && actor.getY() == enemy.getY());
     }
 
     public List<Actor> getEnemies() {

@@ -1,18 +1,24 @@
 package com.codecool.dungeoncrawl.data;
 
 public enum CellType {
-    EMPTY("empty"),
-    FLOOR("floor"),
-    WALL("wall"),
-    LOCKED_DOOR("lockedDoor"),
-    OPEN_DOOR("openDoor"),
-    LOAD_NEW_MAP("newMap"),
-    SAVE_CELL("saveCell");
+    EMPTY(false, "empty"),
+    FLOOR(true, "floor"),
+    WALL(false, "wall"),
+    LOCKED_DOOR(false, "lockedDoor"),
+    OPEN_DOOR(true, "openDoor"),
+    LOAD_NEW_MAP(true, "newMap"),
+    SAVE_CELL(false,"saveCell"),;
 
+    private final boolean canMoveTo;
     private final String tileName;
 
-    CellType(String tileName) {
+    CellType(boolean canMoveTo, String tileName) {
+        this.canMoveTo = canMoveTo;
         this.tileName = tileName;
+    }
+
+    public boolean canMoveTo() {
+        return canMoveTo;
     }
 
     public String getTileName() {

@@ -7,7 +7,6 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OpenDoor implements KeyHandler{
@@ -17,13 +16,9 @@ public class OpenDoor implements KeyHandler{
     public void perform(KeyEvent event, GameMap map) {
         Player player = map.getPlayer();
         if (event.getCode() == code){
-            List<Cell> cells = new ArrayList<Cell>();
-            cells.add(map.getPlayer().getCell().getNeighbor(0, 1));
-            cells.add(map.getPlayer().getCell().getNeighbor(1, 0));
-            cells.add(map.getPlayer().getCell().getNeighbor(-1, 0));
-            cells.add(map.getPlayer().getCell().getNeighbor(0, -1));
+            List<Cell> neighbors = map.getPlayer().getCell().getNeighbors();
 
-            for(Cell cell : cells) {
+            for(Cell cell : neighbors) {
                 if (cell.getType() == CellType.LOCKED_DOOR && player.hasKey()) {
                     cell.setType(CellType.OPEN_DOOR);
                 }

@@ -1,7 +1,6 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
 
@@ -19,7 +18,7 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (nextCell.canMoveTo()) {
+        if (nextCell != null && nextCell.canMoveToCellType()) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
@@ -34,7 +33,7 @@ public abstract class Actor implements Drawable {
     }
 
     public void takeDamage(Actor target, GameMap map) {
-        this.health -= target.getStrength();
+        this.health -= map.getPlayer().getStrength();
         if (this.health <= 0) {
             die(map, target);
         }

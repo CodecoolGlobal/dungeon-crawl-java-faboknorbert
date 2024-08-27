@@ -15,12 +15,11 @@ import javafx.stage.Stage;
 import java.util.Set;
 
 public class UI {
-    private Canvas canvas;
-    private GraphicsContext context;
-
-    private MainStage mainStage;
-    private GameLogic logic;
-    private Set<KeyHandler> keyHandlers;
+    private final Canvas canvas;
+    private final GraphicsContext context;
+    private final MainStage mainStage;
+    private final GameLogic logic;
+    private final Set<KeyHandler> keyHandlers;
 
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
@@ -42,13 +41,11 @@ public class UI {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
-
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         logic.checkPlayerHealth();
         logic.moveEnemy(keyEvent, logic.getMap());
-
 
         Cell playerCell = logic.getMap().getPlayer().getCell();
         if (playerCell.getType() == CellType.LOAD_NEW_MAP) {
@@ -56,7 +53,6 @@ public class UI {
             String nextMap = "/map" + logic.getMapNumber() + ".txt";
             logic.setMap(nextMap);
         }
-
 
         refresh();
     }
@@ -80,6 +76,5 @@ public class UI {
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setDamageLabelText(logic.getPlayerDamage());
         mainStage.setInventoryLabelText(logic.getPlayerInventory());
-
     }
 }
