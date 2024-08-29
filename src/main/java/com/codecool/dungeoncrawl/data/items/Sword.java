@@ -6,7 +6,7 @@ public class Sword extends Item{
     private static final int damage = 5;
 
     public Sword(Cell cell){
-        super(cell, "Sword");
+        super(cell, "sword");
     }
 
     @Override

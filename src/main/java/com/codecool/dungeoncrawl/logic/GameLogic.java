@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.dao.PlayerDao;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Monster;
@@ -8,19 +9,26 @@ import com.codecool.dungeoncrawl.data.actors.Actor;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 public class GameLogic {
     private GameMap map;
     private int mapNum;
     private final int maxMapNum;
-    private final Player player;
+    private Player player;
+    private final PlayerDao playerDao;
+
 
     public GameLogic(String mapName) {
         this.map = MapLoader.loadMap(mapName);
         this.mapNum = 1;
         this.maxMapNum = 3;
         this.player = map.getPlayer();
+        this.playerDao = new PlayerDao();
     }
 
     public void moveEnemy(KeyEvent event, GameMap map){
@@ -87,6 +95,10 @@ public class GameLogic {
         return map;
     }
 
+    public void setPlayer (Player player) {
+        this.player = player;
+    }
+
     private void showWinMessage() {
         JOptionPane.showMessageDialog(
                 null,
@@ -111,6 +123,31 @@ public class GameLogic {
             if (response == JOptionPane.OK_OPTION) {
                 System.exit(0);
             }
+        }
+    }
+
+    public void saveGame() {
+        try {
+            playerDao.savePlayer(player);
+            System.out.println("Game saved successfully.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Failed to save game.");
+        }
+    }
+
+    public void loadGame() {
+        Player loadedPlayer = playerDao.loadPlayer();
+        if (loadedPlayer != null) {
+            Cell loadedCell = map.getCell(loadedPlayer.getX(), loadedPlayer.getY());
+            loadedPlayer.setCell(loadedCell);
+            player.getCell().setActor(null);
+            setPlayer(loadedPlayer);
+            player.getCell().setActor(loadedPlayer);
+            map.setPlayer(loadedPlayer);
+            System.out.println("Game loaded successfully.");
+        } else {
+            System.err.println("No saved game to load.");
         }
     }
 }

@@ -5,7 +5,7 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 public class Key extends Item {
 
     public Key(Cell cell) {
-        super(cell, "Key");
+        super(cell, "key");
     }
 
     @Override

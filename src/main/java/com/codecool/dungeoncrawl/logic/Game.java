@@ -3,6 +3,8 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.ui.UI;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.*;
 import javafx.application.Application;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.util.Set;
@@ -25,5 +27,14 @@ public class Game extends Application {
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
+
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+            if (event.getCode() == KeyCode.F5) {
+                logic.saveGame();
+            } else if (event.getCode() == KeyCode.F9) {
+                logic.loadGame();
+            }
+            ui.refresh();
+        });
     }
 }
