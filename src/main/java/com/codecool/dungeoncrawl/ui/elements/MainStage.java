@@ -86,4 +86,8 @@ public class MainStage {
     public void setInventoryLabelText(String text) {
         this.statusPane.setInventoryValue(text);
     }
+
+    public void setEquippedLabelText(String text){
+        this.statusPane.setEquippedItem(text);
+    }
 }
