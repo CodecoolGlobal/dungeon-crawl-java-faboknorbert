@@ -1,6 +1,5 @@
 package com.codecool.dungeoncrawl.ui.elements;
 
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
