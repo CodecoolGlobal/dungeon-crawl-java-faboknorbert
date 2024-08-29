@@ -29,4 +29,12 @@ public abstract class Item implements Drawable{
     public void pickup(Player player) {
         player.getInventory().add(this);
     }
+
+    public int getX(){
+        return cell.getX();
+    }
+
+    public int getY(){
+        return cell.getY();
+    }
 }
