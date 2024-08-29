@@ -1,10 +1,14 @@
 package com.codecool.dungeoncrawl.dao;
 
-import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.actors.Player;
+import com.codecool.dungeoncrawl.data.items.HealthPotion;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.items.Key;
+import com.codecool.dungeoncrawl.data.items.Sword;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerDao {
@@ -35,7 +39,7 @@ public class PlayerDao {
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 int playerId = rs.getInt(1);
-//                saveItems(playerId, Game.getPlayer().getInventory());
+                saveInventory(playerId, player.getInventory());
 //                saveMonsters(playerId, Game.getMonsters());
             }
         } catch (SQLException e) {
@@ -43,8 +47,8 @@ public class PlayerDao {
         }
     }
 
-    public void saveItems(int playerId, List<Item> items) {
-        String query = "INSERT INTO items (player_id, item_type, x, y) VALUES (?, ?, ?, ?)";
+    public void saveInventory(int playerId, List<Item> items) {
+        String query = "INSERT INTO items (player_id, item_name, x, y) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -53,25 +57,6 @@ public class PlayerDao {
                 pstmt.setString(2, item.getItemName());
                 pstmt.setInt(3, item.getX());
                 pstmt.setInt(4, item.getY());
-                pstmt.addBatch();
-            }
-            pstmt.executeBatch();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void saveMonsters(int playerId, List<Actor> monsters) {
-        String query = "INSERT INTO monsters (player_id, monster_type, health, x, y) VALUES (?, ?, ?, ?, ?)";
-
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            for (Actor monster : monsters) {
-                pstmt.setInt(1, playerId);
-                pstmt.setString(2, monster.getTileName());
-                pstmt.setInt(3, monster.getHealth());
-                pstmt.setInt(4, monster.getX());
-                pstmt.setInt(5, monster.getY());
                 pstmt.addBatch();
             }
             pstmt.executeBatch();
@@ -93,11 +78,53 @@ public class PlayerDao {
                 int health = rs.getInt("health");
                 int strength = rs.getInt("strength");
 
-                return new Player(playerX, playerY, health, strength);
+                List<Item> inventory = loadItems(playerId);
+                return new Player(playerX, playerY, health, strength, inventory);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private List<Item> loadItems(int playerId) {
+        String query = "SELECT * FROM items WHERE player_id = ?";
+        List<Item> items = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, playerId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String itemType = rs.getString("item_name");
+                    int x = rs.getInt("x");
+                    int y = rs.getInt("y");
+
+                    Item item = null;
+                    switch (itemType) {
+                        case "sword":
+                            item = new Sword(new Cell(x, y));
+                            break;
+                        case "HealthPotion":
+                            item = new HealthPotion(new Cell(x, y));
+                            break;
+                        case "key":
+                            item = new Key(new Cell(x, y));
+                            break;
+                        default:
+                            System.err.println("Unknown item type: " + itemType);
+                            break;
+                    }
+
+                    if (item != null) {
+                        items.add(item);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return items;
     }
 }

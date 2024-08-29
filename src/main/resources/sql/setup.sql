@@ -1,4 +1,4 @@
-CREATE TABLE player (
+CREATE TABLE IF NOT EXISTS player(
     id SERIAL PRIMARY KEY,
     x INT NOT NULL,
     y INT NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE player (
     strength INT NOT NULL
 );
 
-CREATE TABLE items (
+CREATE TABLE IF NOT EXISTS items (
     id SERIAL PRIMARY KEY,
     player_id INT REFERENCES player(id) ON DELETE CASCADE,
     item_type VARCHAR(50) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE items (
     y INT NOT NULL
 );
 
-CREATE TABLE monsters (
+CREATE TABLE IF NOT EXISTS monsters (
     id SERIAL PRIMARY KEY,
     player_id INT REFERENCES player(id) ON DELETE CASCADE,
     monster_type VARCHAR(50) NOT NULL,

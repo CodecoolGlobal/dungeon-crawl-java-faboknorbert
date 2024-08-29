@@ -15,9 +15,9 @@ public class Player extends Actor {
         this.inventory = new ArrayList<>();
     }
 
-    public Player(int x, int y, int health, int strength) {
+    public Player(int x, int y, int health, int strength, List<Item> inventory) {
         super(x, y, health, strength);
-        this.inventory = new ArrayList<>();
+        this.inventory = inventory;
     }
 
     @Override

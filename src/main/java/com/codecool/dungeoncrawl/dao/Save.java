@@ -22,5 +22,27 @@ public class Save implements KeyHandler {
                 logic.saveGameState();
             }
         }
-    }*/
+    }
+
+
+
+    public void saveMonsters(int playerId, List<Actor> monsters) {
+        String query = "INSERT INTO monsters (player_id, monster_type, health, x, y) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            for (Actor monster : monsters) {
+                pstmt.setInt(1, playerId);
+                pstmt.setString(2, monster.getTileName());
+                pstmt.setInt(3, monster.getHealth());
+                pstmt.setInt(4, monster.getX());
+                pstmt.setInt(5, monster.getY());
+                pstmt.addBatch();
+            }
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    */
 }
