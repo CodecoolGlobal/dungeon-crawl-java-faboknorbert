@@ -16,7 +16,7 @@ public class PickUp implements KeyHandler{
 
             for(Cell cell : neighbors) {
                 if(cell.getItem() != null){
-                    cell.getItem().pickUp(map);
+                    cell.getItem().pickup(map.getPlayer());
                     cell.setItem(null);
                 }
             }
