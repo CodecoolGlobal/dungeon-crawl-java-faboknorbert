@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Player extends Actor {
     private final List<Item> inventory;
+    private Item equippedItem;
 
     public Player(Cell cell, int health, int strength) {
         super(cell, health, strength);
@@ -41,5 +42,37 @@ public class Player extends Actor {
             }
         }
         return false;
+    }
+
+    public void removeItem(Item item) {
+        inventory.remove(item);
+    }
+
+    public void changeEquippedItem() {
+        if(equippedItem != null && !inventory.isEmpty()) {
+            for (int i = 0; i < inventory.size(); i++) {
+                if(inventory.get(i) == equippedItem && inventory.size() != 1 && i == inventory.size() - 1) {
+                    equippedItem.unequip(this);
+                    equippedItem = inventory.get(0);
+                    inventory.get(0).equip(this);
+                    break;
+                }else if(inventory.get(i) == equippedItem && inventory.size() != 1){
+                    equippedItem.unequip(this);
+                    equippedItem = inventory.get(i + 1);
+                    inventory.get(i + 1).equip(this);
+                    break;
+                }
+            }
+            return;
+        }
+
+        this.equippedItem = inventory.get(0);
+        inventory.get(0).equip(this);
+
+
+    }
+
+    public Item getEquippedItem() {
+        return equippedItem;
     }
 }
