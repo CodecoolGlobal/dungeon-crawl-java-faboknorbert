@@ -3,10 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Ghost;
-import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.actors.Skeleton;
-import com.codecool.dungeoncrawl.data.actors.Tarantula;
+import com.codecool.dungeoncrawl.data.actors.*;
 import com.codecool.dungeoncrawl.data.items.HealthPotion;
 import com.codecool.dungeoncrawl.data.items.Key;
 import com.codecool.dungeoncrawl.data.items.Sword;
@@ -76,6 +73,11 @@ public class MapLoader {
             case 'd':
                 cell.setType(CellType.LOCKED_DOOR);
                 break;
+            case 'b':
+                cell.setType(CellType.FLOOR);
+                Boss boss = new Boss(cell, 20, 5);
+                map.addEnemy(boss);
+                break;
             case 'o':
                 cell.setType(CellType.OPEN_DOOR);
                 break;
@@ -91,6 +93,9 @@ public class MapLoader {
             case 'h':
                 cell.setType(CellType.FLOOR);
                 new HealthPotion(cell);
+                break;
+            case 'q':
+                cell.setType(CellType.TRAP);
                 break;
             case 'l':
                 cell.setType(CellType.LOAD_NEW_MAP);
