@@ -41,12 +41,7 @@ public class Player extends Actor {
     }
 
     public boolean hasKey() {
-        for(Item item : inventory){
-            if (item instanceof Key) {
-                return true;
-            }
-        }
-        return false;
+        return equippedItem instanceof Key;
     }
 
     public void removeItem(Item item) {
