@@ -60,6 +60,12 @@ public class GameLogic {
         return Integer.toString(player.getStrength());
     }
 
+    public String getEquippedItem(){
+        return player.getEquippedItem() == null ? "" : player.getEquippedItem().getItemName();
+    }
+
+
+
     public void setMap(String mapName){
         if (mapNum > maxMapNum) showWinMessage();
         this.map = MapLoader.loadMap(mapName, player);
