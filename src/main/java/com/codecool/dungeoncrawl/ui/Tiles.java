@@ -25,7 +25,9 @@ public class Tiles {
     static {
         tileMap.put("empty", new Tile(0, 0));
         tileMap.put("wall", new Tile(10, 17));
+        tileMap.put("trap", new Tile(12, 12));
         tileMap.put("floor", new Tile(2, 0));
+        tileMap.put("boss", new Tile(24,2));
         tileMap.put("player", new Tile(20, 8)); //default 27/0, colorful 20/8
         tileMap.put("skeleton", new Tile(29, 6));
         tileMap.put("tarantula", new Tile(29, 5));

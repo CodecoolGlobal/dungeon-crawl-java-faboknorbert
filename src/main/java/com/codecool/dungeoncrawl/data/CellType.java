@@ -7,7 +7,8 @@ public enum CellType {
     LOCKED_DOOR(false, "lockedDoor"),
     OPEN_DOOR(true, "openDoor"),
     LOAD_NEW_MAP(true, "newMap"),
-    SAVE_CELL(false,"saveCell"),;
+    SAVE_CELL(false,"saveCell"),
+    TRAP(false, "trap");
 
     private final boolean canMoveTo;
     private final String tileName;
