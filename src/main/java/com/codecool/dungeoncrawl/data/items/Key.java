@@ -1,6 +1,6 @@
 package com.codecool.dungeoncrawl.data.items;
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Player;
 
 public class Key extends Item {
 
@@ -9,12 +9,16 @@ public class Key extends Item {
     }
 
     @Override
-    public void pickUp(GameMap gameMap) {
-        gameMap.getPlayer().getInventory().add(this);
+    public void equip(Player player){
     }
 
     @Override
     public String getTileName() {
         return "key";
     }
+
+    @Override
+    public void unequip(Player player) {
+    }
+
 }

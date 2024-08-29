@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.dao.PlayerDao;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Monster;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import javafx.scene.input.KeyCode;
@@ -20,7 +21,6 @@ public class GameLogic {
     private final int maxMapNum;
     private Player player;
     private final PlayerDao playerDao;
-    Random random = new Random();
 
 
     public GameLogic(String mapName) {
@@ -41,21 +41,7 @@ public class GameLogic {
 
         if(movementKeys.contains(event.getCode())) {
             for (Actor enemy : map.getEnemies()) {
-                List<Cell> neighbourCells = new ArrayList<>();
-
-                for (Cell neighbourCell : enemy.getCell().getNeighbors()) {
-                    if (neighbourCell.canMoveToCellType()) {
-                        neighbourCells.add(neighbourCell);
-                    }
-                }
-
-                if(!neighbourCells.isEmpty()) {
-                    int randomNum = random.nextInt(neighbourCells.size());
-                    Cell neighbourCell = neighbourCells.get(randomNum);
-                    enemy.getCell().setActor(null);
-                    enemy.setCell(neighbourCell);
-                    neighbourCell.setActor(enemy);
-                }
+                ((Monster) enemy).move();
             }
         }
     }
@@ -81,6 +67,12 @@ public class GameLogic {
     public String getPlayerDamage(){
         return Integer.toString(player.getStrength());
     }
+
+    public String getEquippedItem(){
+        return player.getEquippedItem() == null ? "" : player.getEquippedItem().getItemName();
+    }
+
+
 
     public void setMap(String mapName){
         if (mapNum > maxMapNum) showWinMessage();

@@ -1,6 +1,6 @@
 package com.codecool.dungeoncrawl.data.items;
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Player;
 
 public class Sword extends Item{
     private static final int damage = 5;
@@ -10,8 +10,12 @@ public class Sword extends Item{
     }
 
     @Override
-    public void pickUp(GameMap gameMap){
-        gameMap.getPlayer().setStrength(gameMap.getPlayer().getStrength() + damage);
-        gameMap.getPlayer().getInventory().add(this);
+    public void equip(Player player) {
+        player.setStrength(player.getStrength() + damage);
+    }
+
+    @Override
+    public void unequip(Player player) {
+        player.setStrength(player.getStrength() - damage);
     }
 }

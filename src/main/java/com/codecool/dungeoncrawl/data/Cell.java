@@ -3,6 +3,7 @@ import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.items.Item;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Cell implements Drawable {
     private CellType type;
@@ -52,9 +53,6 @@ public class Cell implements Drawable {
     public int getY() { return y; }
 
     public Cell getNeighbor(int dx, int dy) {
-        if(isOutOfBounds(dx, dy)) {
-            return null;
-        }
         return gameMap.getCell(x + dx, y + dy);
     }
 
@@ -72,11 +70,9 @@ public class Cell implements Drawable {
         return type.getTileName();
     }
 
-    public boolean canMoveToCellType() {
-       return type.canMoveTo() && actor == null && item == null;
+    public boolean canMoveToCellType(Actor actor) {
+      if(!Objects.equals(actor.getName(), "Adem")) return type.canMoveTo() && this.actor == null && this.item == null;
+      return this.actor == null && this.item == null;
     }
 
-    private boolean isOutOfBounds(int dx,int dy){
-       return x == 0 && dx < 0 || x == gameMap.getWidth() - 1 && dx > 0 || y == 0 && dy < 0 || y == gameMap.getHeight() - 1 && dy > 0;
-    }
 }
