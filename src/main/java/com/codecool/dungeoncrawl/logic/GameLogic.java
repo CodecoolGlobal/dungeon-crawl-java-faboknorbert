@@ -2,14 +2,12 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Monster;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 public class GameLogic {
@@ -17,8 +15,6 @@ public class GameLogic {
     private int mapNum;
     private final int maxMapNum;
     private final Player player;
-    Random random = new Random();
-
 
     public GameLogic(String mapName) {
         this.map = MapLoader.loadMap(mapName);
@@ -37,21 +33,7 @@ public class GameLogic {
 
         if(movementKeys.contains(event.getCode())) {
             for (Actor enemy : map.getEnemies()) {
-                List<Cell> neighbourCells = new ArrayList<>();
-
-                for (Cell neighbourCell : enemy.getCell().getNeighbors()) {
-                    if (neighbourCell.canMoveToCellType(enemy)) {
-                        neighbourCells.add(neighbourCell);
-                    }
-                }
-
-                if(!neighbourCells.isEmpty()) {
-                    int randomNum = random.nextInt(neighbourCells.size());
-                    Cell neighbourCell = neighbourCells.get(randomNum);
-                    enemy.getCell().setActor(null);
-                    enemy.setCell(neighbourCell);
-                    neighbourCell.setActor(enemy);
-                }
+                ((Monster) enemy).move();
             }
         }
     }
