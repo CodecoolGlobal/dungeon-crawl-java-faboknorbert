@@ -40,7 +40,7 @@ public class GameLogic {
                 List<Cell> neighbourCells = new ArrayList<>();
 
                 for (Cell neighbourCell : enemy.getCell().getNeighbors()) {
-                    if (neighbourCell.canMoveToCellType()) {
+                    if (neighbourCell.canMoveToCellType(enemy)) {
                         neighbourCells.add(neighbourCell);
                     }
                 }

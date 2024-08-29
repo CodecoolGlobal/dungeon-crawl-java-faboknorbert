@@ -28,13 +28,15 @@ public class UI {
                 logic.getMapHeight() * Tiles.TILE_WIDTH);
         this.logic = logic;
         this.context = canvas.getGraphicsContext2D();
-        this.mainStage = new MainStage(canvas);
+        this.mainStage = new MainStage(canvas, logic.getMap());
         this.keyHandlers = keyHandlers;
     }
 
     public void setUpPain(Stage primaryStage) {
         Scene scene = mainStage.getScene();
         primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
+        primaryStage.setFullScreenExitHint("");
         logic.setup();
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
