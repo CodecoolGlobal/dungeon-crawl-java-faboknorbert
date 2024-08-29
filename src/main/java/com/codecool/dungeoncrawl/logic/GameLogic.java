@@ -103,6 +103,10 @@ public class GameLogic {
         return map;
     }
 
+    public void setPlayer (Player player) {
+        this.player = player;
+    }
+
     private void showWinMessage() {
         JOptionPane.showMessageDialog(
                 null,
@@ -145,7 +149,10 @@ public class GameLogic {
         if (loadedPlayer != null) {
             Cell loadedCell = map.getCell(loadedPlayer.getX(), loadedPlayer.getY());
             loadedPlayer.setCell(loadedCell);
-            player = loadedPlayer;
+            player.getCell().setActor(null);
+            setPlayer(loadedPlayer);
+            player.getCell().setActor(loadedPlayer);
+            map.setPlayer(loadedPlayer);
             System.out.println("Game loaded successfully.");
         } else {
             System.err.println("No saved game to load.");
