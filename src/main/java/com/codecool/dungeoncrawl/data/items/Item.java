@@ -1,7 +1,7 @@
 package com.codecool.dungeoncrawl.data.items;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
-import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Player;
 
 
 public abstract class Item implements Drawable{
@@ -23,6 +23,9 @@ public abstract class Item implements Drawable{
         return itemName;
     }
 
-    public abstract void pickUp(GameMap gameMap);
-
+    public abstract void equip(Player player);
+    public abstract void unequip(Player player);
+    public void pickup(Player player) {
+        player.getInventory().add(this);
+    }
 }

@@ -18,6 +18,8 @@ public class StatusPane {
     private Label inventoryTextLabel;
     private Label inventoryValueLabel;
     private Label controlLabel;
+    private Label equippedItemTextLabel;
+    private Label equippedItemValueLabel;
 
     public StatusPane() {
         ui = new GridPane();
@@ -30,6 +32,8 @@ public class StatusPane {
         damageValueLabel = new Label();
         inventoryTextLabel = new Label("Inventory");
         inventoryValueLabel = new Label();
+        equippedItemTextLabel = new Label("Equipped Item");
+        equippedItemValueLabel = new Label();
         controlLabel = new Label("Control:\n    arrows/WASD - move\n    SPACE - attack\n    E - equip/collect\n    O - open locked door");
 
         String whiteTextStyle = "-fx-text-fill: white;";
@@ -42,6 +46,8 @@ public class StatusPane {
         inventoryTextLabel.setStyle(whiteTextStyle);
         inventoryValueLabel.setStyle(whiteTextStyle);
         controlLabel.setStyle(whiteTextStyle);
+        equippedItemTextLabel.setStyle(whiteTextStyle);
+        equippedItemValueLabel.setStyle(whiteTextStyle);
     }
 
     public BorderPane build() {
@@ -54,8 +60,10 @@ public class StatusPane {
         ui.add(healthValueLabel, 2, 1);
         ui.add(damageTextLabel, 1, 2);
         ui.add(damageValueLabel, 2, 2);
-        ui.add(inventoryTextLabel, 1, 3);
-        ui.add(inventoryValueLabel, 2, 3);
+        ui.add(equippedItemTextLabel, 1, 3);
+        ui.add(equippedItemValueLabel, 2, 3);
+        ui.add(inventoryTextLabel, 1, 4);
+        ui.add(inventoryValueLabel, 2, 4);
         ui.add(controlLabel, 1, 6);
 
         BorderPane borderPane = new BorderPane();
@@ -77,5 +85,9 @@ public class StatusPane {
 
     public void setNameValue(String text) {
         nameValueLabel.setText(text);
+    }
+
+    public void setEquippedItem(String text){
+        equippedItemValueLabel.setText(text);
     }
 }

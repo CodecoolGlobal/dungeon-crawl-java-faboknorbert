@@ -1,6 +1,5 @@
 package com.codecool.dungeoncrawl.ui.elements;
 
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -85,5 +84,9 @@ public class MainStage {
 
     public void setInventoryLabelText(String text) {
         this.statusPane.setInventoryValue(text);
+    }
+
+    public void setEquippedLabelText(String text){
+        this.statusPane.setEquippedItem(text);
     }
 }
