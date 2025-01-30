@@ -3,11 +3,17 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
+  <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08">
+    <img src="src/main/resources/gameImages/Screenshot 2025-01-29 125049.png" alt="Logo" width="90" height="90">
+  </a>
+
 <h3 align="center">Dungeon Crawl</h3>
 
   <p align="center">
 Fight, Level Up, Upgrade, Complete Quests, and Discover New Worlds!
+    <br />
   </p>
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
