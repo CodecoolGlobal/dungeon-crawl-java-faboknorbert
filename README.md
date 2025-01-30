@@ -191,12 +191,6 @@ However, feel free to fork the repository for personal use or exploration.
 
 Don't forget to give the project a star if you like it! 🌟
 
-### Top contributors:
-
-<a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=CodecoolGlobal/dungeon-crawl-java-faboknorbert" />
-</a>
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
