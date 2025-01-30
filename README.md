@@ -7,17 +7,7 @@
 
   <p align="center">
 Fight, Level Up, Upgrade, Complete Quests, and Discover New Worlds!
-    <br />
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert">View Demo</a>
-    &middot;
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    &middot;
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
-</div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -129,16 +119,11 @@ _Follow these simple steps to get the project up and running on your machine._
 2. Open the pom.xml File in IntelliJ as a project
 </br>
 
-<img src="src/main/resources/gameImages/Screenshot 2025-01-29 160101.png">
-
 3. Run the Application
 
 - Once the project is open, find the App class (_src.main.java.com.codecool.dungeoncrawl_).
   Right-click the class and select Run 'App.main()'.
 </br>
-
-<img src="src/main/resources/gameImages/Screenshot 2025-01-29 162341.png">
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
