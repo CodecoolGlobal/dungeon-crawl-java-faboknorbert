@@ -63,8 +63,6 @@ Fight, Level Up, Upgrade, Complete Quests, and Discover New Worlds!
 
 ## About The Project
 
-<img src="/src/main/resources/gameImages/Screenshot 2025-01-29 134909.png" width="600" height="400">
-
 Welcome to Dungeon Crawl game!
 
 Embark on an epic dungeon-crawling adventure where danger lurks in every shadow! In Dungeon Crawl, you’ll explore various maps, battle evil monsters, and uncover hidden treasures. Upgrade your character with powerful weapons and armor, complete thrilling quests, and interact with NPCs like shopkeepers to gear up for the challenges ahead.
