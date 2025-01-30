@@ -150,8 +150,6 @@ Once you have the game running, you can explore different dungeons, battle monst
 
 1. **Instructions**: 
 
-<img src="src/main/resources/gameImages/Screenshot 2025-01-29 164755.png">
-
 - A — attack enemy
 - O — open chest
 - H — use healing potion (_restore max health_)
@@ -208,7 +206,7 @@ Don't forget to give the project a star if you like it! 🌟
 ### Top contributors:
 
 <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=MAdem01/el-proyecte-grande-sprint-1" />
+<img src="https://contrib.rocks/image?repo=CodecoolGlobal/dungeon-crawl-java-faboknorbert" />
 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
