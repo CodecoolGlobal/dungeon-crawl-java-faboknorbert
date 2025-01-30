@@ -8,14 +8,14 @@
   <p align="center">
 Fight, Level Up, Upgrade, Complete Quests, and Discover New Worlds!
     <br />
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08">View Demo</a>
+    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert">View Demo</a>
     &middot;
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -106,11 +106,11 @@ _Follow these simple steps to get the project up and running on your machine._
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08.git
+   git clone https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert.git
    ```
 2. Navigate to the project folder
    ```sh
-   cd dungeon-crawl-java-Akoss08
+   cd dungeon-crawl-java-faboknorbert
    ```
 3. Compile the Project (_this installs dependencies and compiles the code_)
    ```sh
@@ -124,7 +124,7 @@ _Follow these simple steps to get the project up and running on your machine._
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08.git
+   git clone https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert.git
    ```
 2. Open the pom.xml File in IntelliJ as a project
 </br>
@@ -207,8 +207,7 @@ Don't forget to give the project a star if you like it! 🌟
 
 ### Top contributors:
 
-!NEED TO CHANGE AFTER PUBLIC ON CONTRIB.ROCKS!
-<a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08/graphs/contributors">
+<a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-faboknorbert/graphs/contributors">
 <img src="https://contrib.rocks/image?repo=MAdem01/el-proyecte-grande-sprint-1" />
 </a>
 
@@ -218,7 +217,7 @@ Don't forget to give the project a star if you like it! 🌟
 
 ## Contact
 
-Akos Horvath - [LinkedIn](https://www.linkedin.com/in/akos-horvath97/) - akos97@gmail.com
+Mustajbasic Adem - [LinkedIn](https://www.linkedin.com/in/adem-mustajbasic) - mustajbasicadem10@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
